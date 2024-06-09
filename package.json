@@ -9,8 +9,10 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
-  "main": "./extension.js",
+  "activationEvents": [
+    
+  ],
+  "main": "./out/phosphate.js",
   "contributes": {
     "commands": [{
       "command": "phosphate.helloWorld",
@@ -18,17 +20,13 @@
     }]
   },
   "scripts": {
-    "lint": "eslint .",
-    "pretest": "npm run lint",
-    "test": "vscode-test"
+      "clean": "rm -rf .shadow-cljs/",
+      "watch": "npx shadow-cljs watch :extension",
+      "compile": "npx shadow-cljs compile :extension",
+      "release": "npx shadow-cljs release :extension",
+      "package": "npx @vscode/vsce package"
   },
   "devDependencies": {
-    "@types/vscode": "^1.90.0",
-    "@types/mocha": "^10.0.6",
-    "@types/node": "18.x",
-    "eslint": "^8.57.0",
-    "typescript": "^5.4.5",
-    "@vscode/test-cli": "^0.0.9",
-    "@vscode/test-electron": "^2.4.0"
+    "shadow-cljs": "^2.28.8"
   }
 }
