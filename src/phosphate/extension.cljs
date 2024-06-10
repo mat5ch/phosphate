@@ -1,17 +1,23 @@
 (ns phosphate.extension
   (:require ["vscode" :as vscode]))
 
-(defn hella-world [] (.. vscode/window (showInformationMessage "Hello World")))
+(def names [{:name "Wolfgang"}
+           {:name "Anna"}
+           {:name "Peter"}
+           {:name "Suzanne"}
+           {:name "Beatrice"}])
+
+(defn hello-world [] (.. vscode/window (showInformationMessage (str "Hello there, I am " (:name (rand-nth names))))))
 
 (defn ^:export activate
   [context]
   (let [disposable (.. vscode/commands
                        (registerCommand
                         "phosphate.helloWorld"
-                        #'hella-world))]
+                        #'hello-world))]
     (.. context.subscriptions (push disposable))))
 
-(defn reload
+(defn ^:export reload
   []
   (.log js/console "Reloading...")
   (js-delete js/require.cache (js/require.resolve "./extension")))
