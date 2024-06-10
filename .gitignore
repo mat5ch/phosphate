@@ -1,3 +1,17 @@
-node_modules
-.vscode-test/
+# vs code
 *.vsix
+
+# Dependency directories
+node_modules
+
+# macos
+.DS_Store
+
+# Clojure
+.cpcache/
+.nrepl-port
+
+# Phosphate
+/out/
+
+.vscode-test/
